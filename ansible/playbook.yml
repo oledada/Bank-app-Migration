@@ -1,0 +1,18 @@
+---
+- name: Déploiement de l'application bancaire sur OpenShift
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Créer le projet OpenShift
+      command: oc new-project bank-migration
+      ignore_errors: yes
+
+    - name: Appliquer les manifests
+      command: oc apply -f ../manifests/
+
+    - name: Vérifier le déploiement
+      command: oc get pods
+      register: pod_status
+
+    - debug:
+        var: pod_status.stdout_lines

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bank-config
+data:
+  application.properties: |
+    server.port=8080
+    bank.api.timeout=30
+    bank.features.transfers=true
